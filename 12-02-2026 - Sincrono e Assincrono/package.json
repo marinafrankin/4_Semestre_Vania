@@ -1,0 +1,12 @@
+{
+  "name": "12-02-2026---sincrono-e-assincrono",
+  "version": "1.0.0",
+  "description": "Exemplo de assincrono e sincrono em aula ",
+  "license": "ISC",
+  "author": "Marina",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
