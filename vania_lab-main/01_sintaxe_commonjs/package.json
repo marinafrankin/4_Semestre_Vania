@@ -1,0 +1,16 @@
+{
+  "name": "sintaxe_commonjs",
+  "version": "1.0.0",
+  "description": "Esse projeto é para conhecer a sintaxe do commonJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "sintaxe",
+    "commonjs"
+  ],
+  "author": "Kaique",
+  "license": "ISC"
+}

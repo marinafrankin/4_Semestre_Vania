@@ -1,0 +1,27 @@
+.mainDiv {
+    @apply w-[40%] p-3 border rounded hover:shadow-sm
+}
+
+.tituloStyle {
+    @apply font-medium
+}
+
+.propStyle {
+    @apply text-sm text-gray-600
+}
+
+.spanStyle {
+    @apply font-semibold
+}
+
+.editar {
+    @apply text-sm px-2 py-1 bg-blue-600 text-white rounded
+}
+
+.adquirir {
+    @apply text-sm px-2 py-1 bg-green-600 text-white rounded
+}
+
+.excluir {
+    @apply text-sm px-2 py-1 bg-red-600 text-white rounded
+}
