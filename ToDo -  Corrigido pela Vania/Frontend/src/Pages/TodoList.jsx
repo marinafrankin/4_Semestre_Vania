@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import TodoItem from "../Components/TodoItem";
-import { getTodos } from "../api/TodoApi";
+import {getTodos} from "../api/TodoApi";
 
 export default function TodoList(){
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const fetch = async()=>{
+    const fetchTodo = async()=>{
         try {
-            setLoading = true;
+            setLoading(true);
             const res = await getTodos();
             setTodos(res.data.tarefas)
         } catch (err) {
@@ -19,9 +19,7 @@ export default function TodoList(){
             setLoading(false);
         }
     }
-    
-    useEffect(()=>{fetch()}, []);
-
+    useEffect(()=>{fetchTodo()}, []);
     const handleDelete = async(id)=>{
 
     }
@@ -39,7 +37,7 @@ export default function TodoList(){
                     <p className="text-gray-500">Nenhuma Tarefa encontrada!</p>
                 ):(
                     todos?.map(todo=>(
-                        <TodoItem
+                        <TodoItem 
                             key={todo._id}
                             todo = {todo}
                             onDelete={()=>handleDelete(todo._id)}

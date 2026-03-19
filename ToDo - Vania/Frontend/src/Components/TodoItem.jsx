@@ -6,7 +6,7 @@ export default function TodoItem({todo, onDelete}){
             <div>
                 <div className="font-medium">{todo.titulo}</div>
                 <div className="text-sm text-gray-600">{todo.descricao}</div>
-                <div className="text-sm">Data Limite: {new Date(todo.dataLimite).ToLocaleDateString()}</div>
+                <div className="text-sm">Data Limite: {new Date(todo.dataLimite).toLocaleDateString()}</div>
                 <div className="text-sm">Situação: {todo.situacao}</div>
             </div>
 
