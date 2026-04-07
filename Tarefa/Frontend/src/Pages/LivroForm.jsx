@@ -16,7 +16,7 @@ export default function LivroForm(){
         e.preventDefault()
         setSaving(true);
         try {
-            await createTodo({titulo, autor, isbn, anoPublicacao, quantidadeEstoque});
+            await createLivro({titulo, autor, isbn, anoPublicacao, quantidadeEstoque});
             navigate("/");
         } catch (error) {
             console.log("Erro ao criar livro:" + (error.message || "Erro"));

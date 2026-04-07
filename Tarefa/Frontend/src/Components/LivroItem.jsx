@@ -1,5 +1,5 @@
 import React from "react";
-export default function LivroItem({livro, onEnd}){
+export default function LivroItem({livro, onEnd, onEdit, onAdquire, onDelete }){
     return(
         <div className="flex flex-col sm:flex-row sm:items-center 
             sm:justify-between p-3 border rounded hover:shadow-sm" >
@@ -12,11 +12,23 @@ export default function LivroItem({livro, onEnd}){
                 </div>
                 
                 <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                        <button onClick={onEnd} 
-                        className="text-sm px-2 py-1 bg-indigo-600 text-white rounded">
-                            Finalizar leitura
+                        <button onClick={onEdit} 
+                        className="text-sm px-2 py-1 bg-green-600 text-white rounded">
+                            Editar
+                        </button>
+
+                        <button onClick={onAdquire} 
+                        className="text-sm px-2 py-1 bg-blue-600 text-white rounded">
+                            Adquirir
+                        </button>
+
+                        <button onClick={onDelete} 
+                        className="text-sm px-2 py-1 bg-red-600 text-white rounded">
+                            Deletar
                         </button>
                 </div>
+
+               
       </div>
     );
 }

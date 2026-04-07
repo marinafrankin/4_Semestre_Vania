@@ -27,6 +27,7 @@ export default class LivroController{
         }
     }//fim do create
 
+
     static async getAll(req, res){
         try {
             const livros = await Livro.find({});
@@ -35,6 +36,23 @@ export default class LivroController{
             res.status(500).json({message:"Problema ao buscar todos os livros", error}); 
         }
     }//fim do getAll
+
+
+    static async getAllByAuthor(req, res){
+        const {autor} = req.query;
+
+        if (!autor) return res.status(400).json({ message: "Informe o autor." });
+        try 
+        {
+            const livros = await Livro.find({ autor: { $regex: autor, $options: "i" } }).sort("-createdAt");
+            res.status(200).json({livros});
+        } 
+        catch (error) 
+        {
+            res.status(500).json({message:"Erro ao buscar todos os livros!", error});
+        }
+    }//fim do getAllByAuthor
+
 
     static async delete(req, res){
         try {
@@ -59,6 +77,7 @@ export default class LivroController{
         }
     }//fim delete
 
+
     static async getOne(req, res){
         const id = req.params.id;
         console.log(id);
@@ -79,7 +98,35 @@ export default class LivroController{
         } catch (error) {
             res.status(500).json({message:"Problema ao buscar livro", error});
         }
-    }
+    }//fim do getOne
+
+
+    static async adquireOne(req, res){
+        const id = req.params.id;
+        const ObjectId = Types.ObjectId;
+
+        if (!ObjectId.isValid(id))
+        {
+            return res.status(422).json({message: "Id inválido!"});
+        }
+        try
+        {
+            const livro = await Livro.findById(id);
+            if (!livro)
+            {
+                return res.status(404).json({message: "Livro não encontrado!"})
+            }
+
+            livro.quantidadeEstoque = livro.quantidadeEstoque + 1;
+            await livro.save();
+            res.status(200).json(livro);
+        } 
+        catch (error) 
+        {
+            res.status(500).json({message: "Erro ao buscar um livro!", error});
+        }
+    }//fim do adquireOne
+
 
     static async updateAll(req, res){
         const id = req.params.id;
@@ -113,7 +160,7 @@ export default class LivroController{
         } catch (error) {
             res.status(500).json({message:"Problema ao alterar um livro", error});
         }
-    }
+    }//fim do updateAll
 
     static async updatePartial(req, res){
         const id = req.params.id;
@@ -140,5 +187,46 @@ export default class LivroController{
         } catch (error) {
             res.status(500).json({message:"Problema ao alterar o Isbn do livro", error});
         }
-    }
+    }//fim do updatePartial
+
+
+    static async updateFull(req, res){
+        try 
+        {
+            const id = req.params.id;
+            const {titulo, autor, isbn, anoPublicacao, quantidadeEstoque} = req.body;
+            const ObjectId = Types.ObjectId;
+
+            if (!ObjectId.isValid(id))
+            {
+                return res.status(422).json({message: "Id inválido"});
+            }
+
+            if (!titulo || !autor || !isbn)
+            {
+                return res.status(422).json({message: "Por favor, verifique os campos obrigatórios!"});
+            }
+
+            const updateData = {
+                titulo,
+                autor,
+                isbn,
+                anoPublicacao,
+                quantidadeEstoque
+            }
+
+            const updatedLivro = await Livro.findByIdAndUpdate(id, updateData, {new: true});
+
+            if (!updatedLivro)
+            {
+                return res.status(404).json({message: "Livro não encontrado!"})
+            }
+
+            return res.status(200).json({message: "Livro alterado com sucesso", updatedLivro});
+        } 
+        catch (error) 
+        {
+            return res.status(500).json({message: "Erro ao buscar um livro", error});
+        }
+    }//fim do updateFull
 }

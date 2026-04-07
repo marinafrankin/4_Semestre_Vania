@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import {Routes, Route} from "react-router-dom";
 import LivroForm from "./Pages/LivroForm";
-import LivroList from "./Pages/TodoList";
+import LivroList from "./Pages/LivroList";
+import LivroEdit from "./Pages/LivroEdit";
+import LivroAutorList from "./Pages/LivroAutorList";
+
 export default function App() {
   
   return (
@@ -17,6 +20,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LivroList />}/>
           <Route path="/new" element={<LivroForm />}/>
+          <Route path="/buscarPorAutor" element={<LivroAutorList/>}></Route>
+          <Route path="/edit/:id" element={<LivroEdit/>}></Route>
         </Routes>
       </main>
     </div>
