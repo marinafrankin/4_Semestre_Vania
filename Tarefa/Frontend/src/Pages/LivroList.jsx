@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import LivroItem from "../Components/LivroItem";
-import {getLivros, updatePartial} from "../api/LivroApi";
+import {getLivros, updatePartial, adquireOne, deleteLivro} from "../api/LivroApi";
 
 export default function LivroList(){
     const [livros, setLivros] = useState([]);
@@ -55,6 +55,15 @@ export default function LivroList(){
         }
     }
 
+    const handleDelete = async (id) => {
+        try {
+            await deleteLivro(id);
+            setLivros(prevLivros => prevLivros.filter(livro => livro._id !== id));
+        } catch (error) {
+            console.error("Erro ao deletar o livro", error);
+        }
+    };
+    
     return(
         <div>
             <div className="max-w-2xl mx-auto pt-8 px-8">
@@ -68,7 +77,7 @@ export default function LivroList(){
                                 transition-all flex items-center gap-2">Novo Livro</Link>
 
                 <Link to='/buscarPorAutor'
-                    className="px-4 py-2 bg-green-600 hover:bg-green-700 
+                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 
                                 text-white text-sm font-medium rounded-lg shadow-sm 
                                 transition-all flex items-center gap-2">Buscar por Autor</Link>
 

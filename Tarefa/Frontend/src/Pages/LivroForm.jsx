@@ -6,8 +6,8 @@ export default function LivroForm(){
     const[titulo, setTitulo] = useState("");
     const[autor, setAutor] = useState("");
     const[isbn, setIsbn] = useState("");
-    const[anoPublicacao, setAnoPublicado] = useState("");
-    const[quantidadeEstoque, setQuantidadeEstoque] = useState("");
+    const[anoPublicacao, setAnoPublicado] = useState(0);
+    const[quantidadeEstoque, setQuantidadeEstoque] = useState(0);
     const[saving, setSaving] = useState(false);
 
     const navigate = useNavigate();
@@ -45,7 +45,12 @@ export default function LivroForm(){
 
             <div>
                 <label className="block text-sm">Quantidade</label>
-                <input required value={quantidadeEstoque} onChange={e=>setQuantidadeEstoque(e.target.value)} className="w-full border rounded px-3 py-2"/>
+                <input required type="number" value={quantidadeEstoque} onChange={e=>setQuantidadeEstoque(e.target.value)} className="w-full border rounded px-3 py-2"/>
+            </div>
+
+            <div>
+                <label className="block text-sm">Ano de Publicação</label>
+                <input required type="number" value={anoPublicacao} onChange={e=>setAnoPublicado(e.target.value)} className="w-full border rounded px-3 py-2"/>
             </div>
 
             <div className="flex itens-center gap-3">

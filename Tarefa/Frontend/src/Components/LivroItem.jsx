@@ -7,7 +7,7 @@ export default function LivroItem({livro, onEnd, onEdit, onAdquire, onDelete }){
                     <div className="font-medium">{livro.titulo}</div>
                     <div className="font-medium">{livro.autor}</div>
                     <div className="text-sm text-gray-600">{livro.isbn}</div>
-                    <div className="text-sm">Ano Publicado:{new Date(livro.anoPublicado).toLocaleDateString()}</div>
+                    <div className="text-sm">Ano Publicado:{livro.anoPublicacao}</div>
                     <div className="text-sm">Estoque:{livro.quantidadeEstoque}</div>
                 </div>
                 

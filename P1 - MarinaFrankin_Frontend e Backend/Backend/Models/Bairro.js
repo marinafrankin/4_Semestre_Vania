@@ -1,25 +1,26 @@
 import mongoose from "../db/conn.js";
 const {Schema} = mongoose;
-const LivroSchema = new Schema({
+const BairroSchema = new Schema({
     titulo:{
         type:String,
         required:true,
     },
-    autor:{
+    descricao:{
         type:String,
         required:true,
     },
-    isbn:{
+    morador:{
         type:String,
         required:true,
     },
-    anoPublicacao:{
-        type:Number
+    data_reclamacao  :{
+        type:String,
+        required:true,
     },
-    quantidadeEstoque:{
-        type:Number,
-        default:0
+    tipo:{
+        type:String,
+        required:true,
     }
 },{timestamps:true});
-const Livro = mongoose.model("Livro", LivroSchema);
-export default Livro;
+const Bairro = mongoose.model("Bairro", BairroSchema);
+export default Bairro;

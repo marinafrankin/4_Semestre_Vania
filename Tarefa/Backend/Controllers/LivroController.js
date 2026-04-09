@@ -23,7 +23,7 @@ export default class LivroController{
             const novoLivro = await Livros.save();
             res.status(200).json({message:"Livro inserido com sucesso", novoLivro});
         } catch (error) {
-            res.status(500).json({message:"Problema ao inserir livro", error}); 
+            res.status(500).json({message:"Problema ao inserir livro", error:error.message}); 
         }
     }//fim do create
 
@@ -123,7 +123,7 @@ export default class LivroController{
         } 
         catch (error) 
         {
-            res.status(500).json({message: "Erro ao buscar um livro!", error});
+            res.status(500).json({message: "Erro ao buscar um livro!", error: error.message});
         }
     }//fim do adquireOne
 
@@ -164,7 +164,7 @@ export default class LivroController{
 
     static async updatePartial(req, res){
         const id = req.params.id;
-        const{situacao} = req.body;
+        const{isbn} = req.body;
         
         const ObjectId = Types.ObjectId;
         
@@ -226,7 +226,7 @@ export default class LivroController{
         } 
         catch (error) 
         {
-            return res.status(500).json({message: "Erro ao buscar um livro", error});
+            return res.status(500).json({message: "Erro ao buscar um livro", error: error.message});
         }
     }//fim do updateFull
 }

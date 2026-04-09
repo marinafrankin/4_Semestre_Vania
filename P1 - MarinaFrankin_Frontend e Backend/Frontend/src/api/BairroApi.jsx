@@ -1,19 +1,17 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL:"http://localhost:5000/Tarefa",
+    baseURL:"http://localhost:5000/P1_Vania",
     headers:{
         "Content-Type":"application/json"
     }
 })
-export const createLivro = (payload)=>api.post('/Create', payload);
+export const createBairro = (payload)=>api.post('/create', payload);
 
-export const getLivros = ()=>api.get('/getAll');
-export const getLivrosPorAutor = (autor)=>api.get("/getAllByAuthor", { params: { autor } });
+export const getBairros = ()=>api.get('/getAll');
+export const getBairroPorTipo = (tipo)=>api.get("/getAllByTipo", { params: { tipo } });
 export const getOne = (id)=>api.get(`/${id}`);
 
-export const adquireOne = (id) => api.get(`/adquire/${id}`);
-
-export const deleteLivro = (id) => api.delete(`/${id}`);
+export const deleteBairro = (id) => api.delete(`/${id}`);
 
 export const updateAll = (id, data)=>api.put(`/${id}`, data);
 export const updatePartial = (id, data)=>api.patch(`/${id}`, data);
