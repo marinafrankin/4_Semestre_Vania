@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "sua_chave_secreta_muito_forte";
 const JWT_EXPIRATION_MS = 24*60*60*1000;// um dia em milisegundos
 
 // Create
-export const create = async(req:Request, res:Response)=>{
+export const registrarMorador = async(req:Request, res:Response)=>{
     // Tem que ser igual ao schema.prisma 
     const{nome, email, senha, perfil} = req.body;
 

@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+ 
+}
+model Usuario{
+  id Int @id @default(autoincrement())
+  nome String
+  email String @unique
+  senha String
+  perfil Perfil @default(MORADOR)
+  criadoEm DateTime @default(now())
+  @@map("usuarios")
+}
+model Lixeira{
+  id Int          @id @default(autoincrement())
+  uuid_sensor String
+  tipo Tipo
+  latitude String 
+  longitude String
+  nivel_cheio Int
+  notificacoes Notificacao[]
+  criadoEm DateTime @default(now())
+  @@map("lixeiras")
+}
+model Notificacao{
+  id Int @id @default(autoincrement())
+  lixeira_id Int
+  lixeira Lixeira @relation(fields: [lixeira_id], references: [id], onDelete: Cascade)
+  mensagem String
+  lida Boolean
+  criadoEm DateTime @default(now())
+  @@map("notificacoes")
+}
+
+enum Perfil {
+  MORADOR
+  GESTOR
+}
+
+enum Tipo{
+  Plastico
+  Vidro
+  Papel
+  Metal
+  Organico
+}
