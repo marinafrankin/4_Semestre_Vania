@@ -1,0 +1,46 @@
+@reference "../index.css";
+.container {
+  @apply p-6 space-y-6 bg-gray-50 min-h-screen;
+}
+
+.header {
+  @apply flex flex-col mb-2;
+}
+
+.tituloPrincipal {
+  @apply text-2xl font-black text-emerald-900 uppercase tracking-tighter italic;
+}
+
+.subtitulo {
+  @apply text-emerald-600 text-sm font-bold;
+}
+
+.gridCards {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+}
+
+/* Cards de Resumo */
+.cardBase {
+  @apply bg-white p-6 rounded-[2rem] shadow-sm transition-transform duration-300 hover:scale-105;
+}
+
+.cardTotal { @apply border-b-4 border-emerald-500; }
+.cardCritico { @apply border-b-4 border-red-500; }
+.cardMedia { @apply border-b-4 border-amber-500; }
+
+.labelCard {
+  @apply text-gray-400 text-xs font-black uppercase tracking-wider;
+}
+
+.valorCard {
+  @apply text-4xl font-black mt-1;
+}
+
+/* Container do Gráfico */
+.containerGrafico {
+  @apply bg-white p-8 rounded-[2.5rem] shadow-xl border-8 border-white flex flex-col items-center;
+}
+
+.tituloGrafico {
+  @apply text-center font-black text-emerald-900 uppercase mb-8 tracking-widest;
+}
