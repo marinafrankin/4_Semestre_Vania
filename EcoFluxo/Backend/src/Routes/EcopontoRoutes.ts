@@ -8,5 +8,7 @@ import {
 const routerEcoponto = Router();
 
 routerEcoponto.get('/ecopontosComLixeiras', buscarEcopontosComLixeiras); 
+routerEcoponto.get('', buscarEcopontosComLixeiras); 
+
 
 export default routerEcoponto;
